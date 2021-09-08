@@ -26,7 +26,7 @@ import { MapConfigurationsComponent } from './map-configurations/map-configurati
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', redirectTo: 'map-configurations', pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'map-configurations', component: MapConfigurationsComponent },

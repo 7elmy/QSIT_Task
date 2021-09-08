@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { MapType } from 'src/app/models/MapType';
 import { MapConfigurations } from 'src/app/models/MapConfigurations';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MapType } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-map-configurations',
