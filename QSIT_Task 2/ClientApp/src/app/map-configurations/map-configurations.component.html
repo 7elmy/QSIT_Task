@@ -1,0 +1,49 @@
+
+
+<div class="container" *ngIf="pageLoaded==true">
+  <form class="row" [formGroup]="mapForm" (ngSubmit)="saveMapConfigurations()">
+    <div class="form-group col-6">
+      <label for="ClusterRadius">Cluster Radius</label>
+      <input  type="number" class="form-control" id="ClusterRadius" formControlName="clusterRadius" [ngClass]="{ 'is-invalid':( submitted && f.clusterRadius.errors) || clusterRadiusError==true }" (keyup)="checkMsg()" (change)="checkMsg()">
+      <div *ngIf="clusterRadiusError==true" class="invalid-feedback">
+        <div>{{clusterRadiusErrorMsg}}</div>
+      </div>
+    </div>
+    <div class="form-group col-6" style="text-align: center;">
+      <label for="GeoFencing">Geo-Fencing</label>
+      <input type="checkbox" checked data-toggle="toggle" id="GeoFencing" formControlName="geoFencing" [ngClass]="{ 'is-invalid': submitted && f.geoFencing.errors }">
+    </div>
+    <div class="form-group col-6">
+      <label for="DuplicationEventTimeBuffer">Time Buffer</label>
+      <input type="number" class="form-control" id="DuplicationEventTimeBuffer" formControlName="duplicationEventTimeBuffer" [ngClass]="{ 'is-invalid': submitted && f.duplicationEventTimeBuffer.errors }">
+    </div>
+    <div class="form-group col-6">
+      <label for="DuplicationEventLocationBuffer">Location Buffer</label>
+      <input type="number" class="form-control" id="DuplicationEventLocationBuffer" formControlName="duplicationEventLocationBuffer" [ngClass]="{ 'is-invalid': submitted && f.duplicationEventLocationBuffer.errors }">
+    </div>
+    <div class="form-group col-6">
+      <label for="EndEventDuration">End Event Duration</label>
+      <input type="number" class="form-control" id="EndEventDuration" formControlName="endEventDuration" [ngClass]="{ 'is-invalid': submitted && f.endEventDuration.errors }">
+    </div>
+    <div class="col-12"></div>
+    <div class="form-group col-6">
+      <label for="MapType">Map Type</label>
+      <select class="form-control select" [(ngModel)]="mapTypeId" [ngModelOptions]="{standalone: true}" aria-hidden="true" id="MapType" (change)="onMapTypeChange($event.target.value)">
+        <option value="">Select</option>
+        <option *ngFor="let mapType of mapTypes" value="{{mapType.id}}">{{mapType.name}}</option>
+      </select>
+    </div>
+    <div class="col-12"></div>
+    <div class="form-group col-6">
+      <label for="MapSubType">Map Sub Type</label>
+      <select class="form-control select" aria-hidden="true" id="MapSubType" [disabled]="MapTypeSelected==false" formControlName="mapSubTypeId" [ngClass]="{ 'is-invalid': submitted && f.mapSubTypeId.errors }">
+        <option value="">Select</option>
+        <option *ngFor="let mapSubType of mapSubTypes" value="{{mapSubType.id}}">{{mapSubType.name}}</option>
+      </select>
+    </div>
+    <div class="col-12"></div>
+    <div class="form-group col-6">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
